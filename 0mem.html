@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content=""><meta name="author" content="">
+        <link href="js-css/0mem.css" rel="stylesheet" type="text/css">
+        <link href="js-css/bootstrap.css" rel="stylesheet" type="text/css">
+      <script src="js-css/jquery-1.11.0.js"></script>
+
+  </head>
+
+  <body style="background-color:#0bb5bd">
+<!--
+https://bible-api.com/jn%203:16
+-->
+<div class="header-h1 indent-left-1 padt-50">
+	<div id="find-my-verse-id" class="ptr-1" onclick="reset()">
+		Find My Verse To Memorize
+	</div>
+
+
+
+	<div id="verses-id" class="header-h3 indent-left-1 hidden">
+		<div id="f-verses-id" class="header-h3 hidden">
+			<div class="verse-cl">
+				<span class="book-verse-cl">Phil 4:6</span><br>
+				Do not be anxious in anything, <br>
+				but in everything, <br>
+				with prayer and thanksgiving, <br>
+				make your requests be made known unto God".<br>
+			</div>
+			<div class="verse-cl padt-20">
+				<span class="book-verse-cl">Isaiah 41:10</span><br>
+				So do not fear, for I am with you;<br>
+				do not be dismayed, for I am your God.<br>
+				I will strengthen you and help you;<br>
+				I will uphold you with my righteous right hand.<br>
+			</div>
+			<div class="verse-cl padt-20">
+				<span class="book-verse-cl">Joshua 1:9</span><br>
+				Have I not commanded you? <br>
+				Be strong and courageous. <br>
+				Do not be afraid; <br>
+				do not be discouraged, <br>
+				for the Lord your God will be with you wherever you go. <br>
+			</div>
+
+			<div class="verse-cl padt-20">
+
+				<span class="book-verse-cl">Luke 12:22</span><br>
+				Then Jesus said to his disciples: <br>
+				Therefore I tell you, <br>
+				do not worry about your life, <br>
+				what you will eat; or about your body, <br>
+				what you will wear. <br>
+			</div>
+		</div>
+
+		<div id="c-verses-id" class="header-h3 hidden">
+			<div class="verse-cl padt-20">
+				<span class="book-verse-cl">1 Thes 5:16-17</span><br>
+				Rejoice always<br>
+				Pray without ceasing<br>
+
+			</div>
+			<div class="verse-cl padt-20">
+				<span class="book-verse-cl">Isaiah 41:10</span><br>
+				Trust in the Lord<br>
+				with all of your heart<br>
+				And do not rely<br>
+				on your own understanding.<br>
+				In all your ways<br>
+				acknowledge him<br>
+				and he will make your paths straight<br>
+			</div>
+		</div>
+	</div>
+
+	<div id="search-choices-id" class="header-h1  indent-left-1">
+
+		<div id="by-specific-id" class="header-h2  indent-left-1 padt-30">
+			By Specific Verse
+
+			<div id="verse-fields-id"></div>
+		</div>
+
+		<div class="header-h2 indent-left-1 padt-30">
+
+			<span class="option-cl" onclick="showdiv('feelings-list-id')" >Struggles</span>
+			<div id="feelings-list-id" class="header-h3 indent-left-2 hidden">
+				<div class="node-cl">Afraid (Fearful, Unsafe)</div>
+				<div class="node-cl">Alone (Lonely)</div>
+				<div class="node-cl">Angry</div>
+				<div class="node-cl" onclick="showVerses('anxious')">Anxious</div>
+				<div class="node-cl">Depressed (Down, Hopeless)</div>
+				<div class="node-cl">Envious</div>
+				<div class="node-cl">Guilty</div>
+				<div class="node-cl">Impatient</div>
+				<div class="node-cl">Insecure</div>
+				<div class="node-cl">Lost (Confused, Needing Guidance)</div>
+				<div class="node-cl">Oppressed</div>
+				<div class="node-cl">Overwhelmed</div>
+				<div class="node-cl">Sorrowful (Sad)</div>
+				<div class="node-cl">Stressed</div>
+				<div class="node-cl">Struggling to love someone</div>
+				<div class="node-cl">Tired</div>
+				<div class="node-cl">Weak</div>
+				<div class="node-cl">Worried</div>
+				<div class="node-cl">Worthless</div>
+			</div>
+		</div>
+
+		<div class="header-h2 indent-left-1 padt-30">
+			<span class="option-cl" onclick="showdiv('collections-list-id')" >Collections</span><br>
+			<div id="collections-list-id" class="header-h3  indent-left-2 hidden">
+				<div class="node-cl" onclick="shownode('top100-id')"> Top 100</div>
+				<div class="node-cl"> From Each Book of the Bible</div>
+				<div class="node-cl"> God's Promises</div>
+				<div class="node-cl"> Christian Living</div>
+				<div class="node-cl"> Healing</div>
+				<div class="node-cl" onclick="showVerses('walking-with-god')"> Walking With God</div>
+				<div class="node-cl"> Praise</div>
+				<div class="node-cl"> Thanksgiving</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+
+
+<!---------------------------------------------------->
+
+  </body>
+
+  <script type="text/javascript">
+    var lastShownId = "";
+    function showdiv( divId ) {
+		if (lastShownId != "") {
+			var lastElem = $('#' + lastShownId);
+			lastElem.addClass('hidden');
+		}
+		if (lastShownId == divId) {
+			lastShownId = "";
+			return;
+		}
+
+		var showElem = $('#' + divId);
+		showElem.removeClass('hidden');
+		lastShownId = divId;
+	}
+
+	function reset() {
+		var elem = $('#verses-id');
+		elem.addClass('hidden');
+
+		var elems = $('.option-cl');
+		elems.removeClass('hidden');
+
+		elems = $('.node-cl');
+		elems.removeClass('hidden');
+
+		elem = $('#by-specific-id');
+		elem.removeClass('hidden');
+
+		elem = $('#feelings-list-id');
+		elem.addClass('hidden');
+
+		elem = $('#collections-list-id');
+		elem.addClass('hidden');
+
+		lastShownId = "";
+	}
+
+    function showVerses( categoryName ) {
+
+
+		var showElem = $('#verses-id');
+		showElem.removeClass('hidden');
+
+		var elems = $('.option-cl');
+		elems.addClass('hidden');
+
+		elems = $('.node-cl');
+		elems.addClass('hidden');
+
+		showElem = $('#by-specific-id');
+		showElem.addClass('hidden');
+
+		if (categoryName == "anxious") {
+			// show feelings; hide collection
+			showElem = $('#f-verses-id');
+			showElem.removeClass('hidden');
+
+			hideElem = $('#c-verses-id');
+			hideElem.addClass('hidden');
+		} else if (categoryName == "walking-with-god" ){
+			// show collection; hide feelings
+			showElem = $('#c-verses-id');
+			showElem.removeClass('hidden');
+
+			hideElem = $('#f-verses-id');
+			hideElem.addClass('hidden');
+		}
+	}
+
+  </script>
+</html>
+
